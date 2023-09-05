@@ -25,16 +25,20 @@ def get_birthdays_per_week(users):
         list_of_colleagues.append(Colleague(**user))
     
     for colleague in list_of_colleagues:
-        if (today > colleague.birthday and 
+        if (
+            today > colleague.birthday and 
             today > datetime(today.year + 1, 
                           colleague.birthday.month, 
-                            colleague.birthday.day).date() > week_from_now):
+                            colleague.birthday.day).date() > week_from_now
+            ):
             birthday_passed_dct[colleague.name] = colleague.birthday.strftime('%d %B')
             
-        elif (today <= colleague.birthday <= week_from_now or 
+        elif (
+            today <= colleague.birthday <= week_from_now or 
         today <= datetime(today.year + 1, 
                           colleague.birthday.month, 
-                            colleague.birthday.day).date() <= week_from_now):
+                            colleague.birthday.day).date() <= week_from_now
+            ):
             if colleague.birthday.weekday() not in [5,6]:
                 dct_birthday_this_week[colleague.birthday.strftime('%A')].append(colleague.name)   
             else:
